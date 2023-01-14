@@ -9,8 +9,9 @@ from contextlib import suppress
 from aiogram.utils.exceptions import MessageNotModified
 from aiogram.utils.callback_data import CallbackData
 
+TOKEN = "5951302929:AAHMiYbWYiXuT8uXqihK9yinZb4pXcE-8mg"
 
-bot_token = getenv("BOT_TOKEN")
+bot_token = TOKEN
 if not bot_token:
     exit("Error: no token provided")
 
@@ -40,6 +41,7 @@ async def update_num_text_fab(message: types.Message, new_value: int):
 
 @dp.message_handler(commands="numbers_fab")
 async def cmd_numbers(message: types.Message):
+    print(message.from_user.id)
     user_data[message.from_user.id] = 0
     await message.answer("Укажите число: 0", reply_markup=get_keyboard_fab())
 
