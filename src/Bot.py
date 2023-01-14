@@ -8,9 +8,10 @@ from contextlib import suppress
 from aiogram.utils.exceptions import MessageNotModified
 from aiogram.utils.callback_data import CallbackData
 
+
 bot_token = getenv("BOT_TOKEN")
 if not bot_token:
-    exit("Errot: no token provided")
+    exit("Error: no token provided")
 
 bot = Bot(token=bot_token, parse_mode = types.ParseMode.HTML)
 dp = Dispatcher(bot)
