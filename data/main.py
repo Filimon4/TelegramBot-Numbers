@@ -1,4 +1,5 @@
 from aiogram import Bot, Dispatcher, executor, types
+import os
 
 def start_bot():
-    print('hi')
+    print(os.getenv('TOKEN'))
