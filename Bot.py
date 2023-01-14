@@ -5,6 +5,7 @@ from random import randint
 from os import getenv
 from sys import exit
 from contextlib import suppress
+
 from aiogram.utils.exceptions import MessageNotModified
 from aiogram.utils.callback_data import CallbackData
 
