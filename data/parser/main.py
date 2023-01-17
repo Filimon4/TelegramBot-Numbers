@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import re
 import json
 
 def get_data(url):
@@ -15,60 +14,60 @@ def get_data(url):
 
     soup = BeautifulSoup(src, 'lxml')
     movies = soup.find_all(class_="EventList__Event-sc-14wck6-3 dKUEol event rental large")
+    dictionary = {}
     for movie in movies:
-        with open("movie.html", 'r', encoding='utf-8') as f:
-             moiveHtml = f.read()
         print('--------------------------------')
-        soupMovie = BeautifulSoup(moiveHtml, 'lxml')
-        name = soupMovie.find_all('a', class_='event-name')
+        soupMovie = BeautifulSoup(src, 'lxml')
+        name = movie.find_all('a', class_='event-name')
         for name_ in name:
             text_name = name_.text
             text_name = text_name.replace("  ", "")
-            print(text_name)   
+            print(text_name)
+            
 
     
-        date_tab = soupMovie.find_all(class_="day-tab")
-        for date_tab_ in date_tab:
-            text_date_tab = date_tab_.text
-    
-            print(text_date_tab)
-    
-        time_session = soupMovie.find_all(class_='show-time')
+        time_session = movie.find_all(class_='Show-sc-rhge3d-2 gDYwMv show')
+        text_time_session = []
         for time_session_ in time_session:
-            text_time_session = time_session_.text
+            text_time_session.append(time_session_.text)
 
             print(text_time_session)
 
+        dictionary[text_name] = text_time_session
 
-
-
-
-
-
-
-
-
-
-
-
-    # soup = BeautifulSoup(src, 'lxml')
-    # name = soup.find_all('a', class_='event-name')
-    # for name_ in name:
-    #     text_name = name_.text
-    #     text_name = text_name.replace("  ", "")
-    #     print(text_name)   
-
+    soup = BeautifulSoup(src, 'lxml')
+    movies_pk = soup.find_all(class_="EventList__Event-sc-14wck6-3 dKUEol event rental pushkin-card large")
+    for movie_pk in movies_pk:
+        print('--------------------------------')
+        name = movie_pk.find_all('a', class_='event-name')
+        for name_ in name:
+            text_name = name_.text
+            text_name = text_name.replace("  ","")
+            print(text_name)   
     
-    # date_tab = soup.find_all(class_="day-tab")
-    # for date_tab_ in date_tab:
-    #     text_date_tab = date_tab_.text
-    
-    #     print(text_date_tab)
-    
-    # time_session = soup.find_all(class_='show-time')
-    # for time_session_ in time_session:
-    #     text_time_session = time_session_.text
+        time_session = movie_pk.find_all(class_='Show-sc-rhge3d-2 gDYwMv show')
+        text_time_session = []
+        for time_session_ in time_session:
+            time_session_= time_session.text
+            text_time_session.append(time_session_.replace('\n',''))
 
-    #     print(text_time_session)
+            print(time_session_.text)
+        
+        image = movie_pk.find_all('div',class_='Poster-sc-mn9zap-1 kAKPQC event-poster')
+        print(image)
+        for text_image in image:
+            src_img = text_image.find('img').find("src")
+            print(src_img)
 
-get_data('https://kinosmena.ru/')
+
+        dictionary[text_name] = text_time_session
+
+        
+        
+    json_object = json.dumps(dictionary, indent=4, ensure_ascii=False)
+    with open("sample2.json", "w", encoding='utf-8') as outfile:
+        outfile.write(json_object)
+
+
+
+get_data(f'https://kinosmena.ru/?date=2023/01/{17}')
