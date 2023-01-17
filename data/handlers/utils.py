@@ -4,8 +4,8 @@ from aiogram.types import Message, CallbackQuery, Voice
 from .Inline_kb_menu import ikb_menu, ikb_session
 from .bkb_menu import kb_menu, kb_menu2
 
-import event_handler
-import buttons
+from .event_handler import *
+from .buttons import *
 
 import speech_recognition as sr
 from pathlib import Path
@@ -34,8 +34,9 @@ async def handle_file(file: types.File, file_name: str, path: str):
 
 async def Voice_answer(msg: types.Message):
     voice = await msg.voice.get_file()
+    print(voice)
     path = "./voices_answer"
-    await handle_file(file_name=f"{voice.file_id}.ogg", path=path)
+    await handle_file(file_name=f"{voice.file_unique_id}.ogg", path=path)
     await msg.reply(Listened(msg.audio))
 
 # async def show_inline_menu(message: types.Message):
@@ -77,7 +78,7 @@ async def sessions(message: types.Message):
 def regirst_events(dp: Dispatcher):
     # register events
 
-    # dp.register_message_handler(Voice_answer, content_types=types.ContentTypes.VOICE)
+    dp.register_message_handler(Voice_answer, content_types=types.ContentTypes.VOICE)
     # dp.register_message_handler(show_inline_menu, commands = 'menu')
     # dp.register_message_handler(menu, commands = 'kmenu')
     dp.register_message_handler(start, commands = 'start')

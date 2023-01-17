@@ -1,6 +1,6 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from datetime import date
-import callback
+from .callback import *
 import calendar
 
 def get_day(increment=0):
