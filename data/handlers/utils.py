@@ -1,21 +1,11 @@
 from aiogram import Dispatcher, types, Bot
 from aiogram.types import ContentType, Message, CallbackQuery, Voice, File
 
-from .Inline_kb_menu import ikb_menu, ikb_session
-
 from .event_handler import *
-from .buttons import *
 
 import speech_recognition as sr
 from pathlib import Path
 import os
-
-
-
-
-
-async def errors(mes: Message):
-    await mes.answer(f'Command {mes.text} not found!')
 
 def Listened(file_name):
     with sr.AudioFile(file_name) as source:
@@ -76,15 +66,6 @@ async def Voice_answer(msg: types.Message):
 
 # async def menu(message: types.Message):
 #     await message.answer("new keyboard", reply_markup=kb_menu)
-
-async def start(message: types.Message):
-    await message.answer('''
-        Здравствуй, я бот транслирующий сеансы в Смене.
-        \nЧто бы увидеть список сенасов воспользуйся командой /sessions
-    ''')
-
-async def sessions(message: types.Message):
-    await message.answer('''Выберете Дату''', reply_markup=ikb_session)
 
 def regirst_events(dp: Dispatcher):
     # register events
