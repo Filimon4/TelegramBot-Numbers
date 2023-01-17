@@ -1,10 +1,10 @@
 from aiogram import Bot, Dispatcher, executor, types
 import os
 
-from .handlers import register_modules
+from .handlers import registr_modules
 
 async def create_logic(dp: Dispatcher):
-    register_modules(dp)
+    registr_modules(dp)
 
 def start_bot():
     bot = Bot(token=os.getenv("TOKEN"))

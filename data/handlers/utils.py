@@ -67,7 +67,7 @@ async def Voice_answer(msg: types.Message):
 # async def menu(message: types.Message):
 #     await message.answer("new keyboard", reply_markup=kb_menu)
 
-def regirst_events(dp: Dispatcher):
+def registr_events(dp: Dispatcher):
     # register events
 
     # dp.register_message_handler(Voice_answer, content_types=types.ContentTypes.VOICE)

@@ -1,1 +1,1 @@
-from .callback_but import *
+from .main import registr_callbackes
