@@ -1,5 +1,5 @@
 from aiogram import Dispatcher, types
-from aiogram.types import Message
+from aiogram.types import Message, CallbackQuery
 from .Inline_kb_menu import ikb_menu
 from .bkb_menu import kb_menu, kb_menu2
 
@@ -11,6 +11,9 @@ async def errors(mes: Message):
 async def show_inline_menu(message: types.Message):
     await  message.answer ("Инлайн кнопки ниже", reply_markup=ikb_menu) 
 
+async def send_message_ikb (call: CallbackQuery):
+    await call.message.answer("Какой то текст", reply_markup=ikb_menu)
+
 async def send_message2(message: types.Message):
     await message.answer('You search new item',reply_markup=kb_menu2)
 
@@ -18,7 +21,7 @@ async def send_message3(message: types.Message):
     await message.answer('You beat',reply_markup=kb_menu2)
 
 async def send_message4(message: types.Message):
-    await message.answer('It your name',reply_markup=kb_menu2)
+    await message.answer('ahahahhahahaahhaahah',reply_markup=kb_menu2)
 
 async def send_message5(message: types.Message):
     await message.answer('Funny',reply_markup=kb_menu2)
@@ -40,6 +43,7 @@ def regirst_events(dp: Dispatcher):
     
     dp.register_message_handler(show_inline_menu, commands = 'menu')
     dp.register_message_handler(menu, commands = 'kmenu')
+    dp.register_callback_query_handler(send_message_ikb)
     dp.register_message_handler(send_message2, text= 'radar'   )
     dp.register_message_handler(send_message3, text= 'kieeea'   )
     dp.register_message_handler(send_message4, text= 'Mark'   )
