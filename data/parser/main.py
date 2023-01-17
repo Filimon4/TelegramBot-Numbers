@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import json
-
 def get_data(url):
     headers = {
         "user-agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 OPR/93.0.0.0"
@@ -12,7 +11,6 @@ def get_data(url):
     # src = requests.get(url, headers)
 
     soup = BeautifulSoup(src, 'lxml')
-
     movies = soup.find_all(class_="EventList__Event-sc-14wck6-3 dKUEol event rental large")
     movies_pk = soup.find_all(class_="EventList__Event-sc-14wck6-3 dKUEol event rental pushkin-card large")
 
@@ -21,7 +19,6 @@ def get_data(url):
         soupMovie = BeautifulSoup(src, 'lxml')
 
         text_time_session = {}
-
         name = movie.find_all('a', class_='event-name')
         for name_ in name:
             text_name = name_.text
@@ -48,6 +45,7 @@ def get_data(url):
 
         dictionary.update({text_name : text_time_session})
         print(dictionary)
+
     json_object = json.dumps(dictionary, indent=4, ensure_ascii=False)
     with open("sample2.json", "w", encoding='utf-8') as outfile:
         outfile.write(json_object)
