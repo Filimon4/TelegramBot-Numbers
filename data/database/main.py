@@ -1,5 +1,5 @@
 from peewee import *
-from .module.user import *
+from .models.user import *
 
 def register_database():
     pass
