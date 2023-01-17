@@ -7,12 +7,12 @@ def get_data(url):
         "user-agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
     }
 
-    with open('index.html','r', encoding='utf-8') as file:
-        src = file.read()
-    # src = requests.get(url, headers)
-    # soup = BeautifulSoup(src.text, 'lxml')
+    # with open('index.html','r', encoding='utf-8') as file:
+    #     src = file.read()
+    src = requests.get(url, headers)
+    
 
-    soup = BeautifulSoup(src, 'lxml')
+    soup = BeautifulSoup(src.text, 'lxml')
     movies = soup.find_all(class_="EventList__Event-sc-14wck6-3 dKUEol event rental large")
     dictionary = {}
     for movie in movies:
@@ -30,7 +30,6 @@ def get_data(url):
         text_time_session = []
         for time_session_ in time_session:
             text_time_session.append(time_session_.text)
-
             print(text_time_session)
 
         dictionary[text_name] = text_time_session
@@ -48,16 +47,15 @@ def get_data(url):
         time_session = movie_pk.find_all(class_='Show-sc-rhge3d-2 gDYwMv show')
         text_time_session = []
         for time_session_ in time_session:
-            time_session_= time_session.text
-            text_time_session.append(time_session_.replace('\n',''))
+            text_time_session.append(time_session_.text)
 
             print(time_session_.text)
         
-        image = movie_pk.find_all('div',class_='Poster-sc-mn9zap-1 kAKPQC event-poster')
-        print(image)
-        for text_image in image:
-            src_img = text_image.find('img').find("src")
-            print(src_img)
+        image = movie_pk.find('div',class_='Poster-sc-mn9zap-1 kAKPQC event-poster').find('img').get('src')
+        for image_text in image:
+            image_text = image.text
+            print(image_text)
+            
 
 
         dictionary[text_name] = text_time_session
@@ -65,7 +63,7 @@ def get_data(url):
         
         
     json_object = json.dumps(dictionary, indent=4, ensure_ascii=False)
-    with open("sample2.json", "w", encoding='utf-8') as outfile:
+    with open("sample.json", "w", encoding='utf-8') as outfile:
         outfile.write(json_object)
 
 
