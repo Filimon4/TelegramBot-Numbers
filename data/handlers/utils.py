@@ -30,7 +30,7 @@ async def handle_file(file: File, file_name: str, path: str):
 
 async def Voice_answer(msg: types.Message):
     voice = await msg.voice.get_file()
-    path = "/voices_answer"
+    path = "./voices_answer"
     await handle_file( file_name=f"{voice.file_id}.ogg", path=path)
     await msg.reply(Listened(msg.audio))
 
