@@ -2,7 +2,7 @@ from aiogram import Dispatcher, types
 from aiogram.types import Message, CallbackQuery, Voice
 from .Inline_kb_menu import ikb_menu
 from .bkb_menu import kb_menu, kb_menu2
-import SpeechRecognition as sr
+import speech_recognition as sr
 r = sr.Reconginzer()
 
 
