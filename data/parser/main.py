@@ -15,7 +15,7 @@ def get_data(url):
     movies_pk = soup.find_all(class_="EventList__Event-sc-14wck6-3 dKUEol event rental pushkin-card large")
 
     dictionary = {}
-    for movie in (movies+movies_pk):
+    for movie in (movies + movies_pk):
         soupMovie = BeautifulSoup(src, 'lxml')
 
         text_time_session = {}
