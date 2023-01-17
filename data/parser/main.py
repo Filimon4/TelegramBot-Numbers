@@ -6,9 +6,10 @@ def get_data(url):
         "user-agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 OPR/93.0.0.0"
     }
 
-    with open('index.html','r', encoding='utf-8') as file:
-        src = file.read()
-    # src = requests.get(url, headers)
+    # with open('index.html','r', encoding='utf-8') as file:
+    #     src = file.read()
+    src = requests.get(url, headers).content
+    print(src)
 
     soup = BeautifulSoup(src, 'lxml')
     movies = soup.find_all(class_="EventList__Event-sc-14wck6-3 dKUEol event rental large")
@@ -47,7 +48,7 @@ def get_data(url):
         print(dictionary)
 
     json_object = json.dumps(dictionary, indent=4, ensure_ascii=False)
-    with open("sample2.json", "w", encoding='utf-8') as outfile:
+    with open("sample.json", "w", encoding='utf-8') as outfile:
         outfile.write(json_object)
 
 get_data(f'https://kinosmena.ru/?date=2023/01/{18}&facility=smena')
