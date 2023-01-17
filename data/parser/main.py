@@ -6,10 +6,10 @@ def get_data(url):
         "user-agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 OPR/93.0.0.0"
     }
 
-    with open('index.html','r', encoding='utf-8') as file:
+    with open("index.html",'r', encoding='utf-8') as file:
         src = file.read()
     # src = requests.get(url, headers)
-    # soup = BeautifulSoup(src.text, 'lxml')
+    # soup = BeautifulSoup(s    rc.text, 'lxml')
 
 
     soup = BeautifulSoup(src, 'lxml')
