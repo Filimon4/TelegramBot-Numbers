@@ -43,7 +43,8 @@ def regirst_events(dp: Dispatcher):
     
     dp.register_message_handler(show_inline_menu, commands = 'menu')
     dp.register_message_handler(menu, commands = 'kmenu')
-    dp.register_callback_query_handler(send_message_ikb)
+    dp.register_callback_query_handler(send_message_ikb, text = 'Your text')
+    dp.register_callback_query_handler(send_message_ikb, text = 'Your text2')
     dp.register_message_handler(send_message2, text= 'radar'   )
     dp.register_message_handler(send_message3, text= 'kieeea'   )
     dp.register_message_handler(send_message4, text= 'Mark'   )
