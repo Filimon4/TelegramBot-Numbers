@@ -6,4 +6,4 @@ async def session_today(callback: types.CallbackQuery):
     await callback.answer()
 
 def register_query(dp: Dispatcher):
-    dp.register_callback_query_handler(session_today, Text(startswith = "sesstion_"))
+    dp.register_callback_query_handler(session_today, Text(startswith = "session_"))

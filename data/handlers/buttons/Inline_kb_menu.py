@@ -14,6 +14,6 @@ def get_month():
 ikb_session = InlineKeyboardMarkup(row_width=8, inline_keyboard=[[
     InlineKeyboardButton(text = f"{get_day()} {get_month()}", callback_data = "session_today"),
     InlineKeyboardButton(text = f"{get_day(1)} {get_month()}", callback_data = "session_tomorrow"),
-    InlineKeyboardButton(text = f"{get_day(2)} {get_month()}", callback_data = "sesstion_2tomorrow"),
-    InlineKeyboardButton(text = f"{get_day(3)} {get_month()}", callback_data = "sessiton_3tomorrow")
+    InlineKeyboardButton(text = f"{get_day(2)} {get_month()}", callback_data = "session_2tomorrow"),
+    InlineKeyboardButton(text = f"{get_day(3)} {get_month()}", callback_data = "session_3tomorrow")
 ]])

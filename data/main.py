@@ -1,4 +1,5 @@
 from aiogram import Bot, Dispatcher, executor, types
+import os
 
 from .handlers import registr_modules
 # from .bot import bot,dp
@@ -8,5 +9,5 @@ async def create_logic(dp: Dispatcher):
 
 def start_bot():
     bot = Bot(token=os.getenv("TOKEN"))
-    bp = Dispatcher(bot)
+    dp = Dispatcher(bot)
     executor.start_polling(dp, skip_updates=True, on_startup=create_logic)
