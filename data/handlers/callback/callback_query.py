@@ -15,19 +15,20 @@ async def session_today(callback: types.CallbackQuery):
         data = json.load(f)
         bot = Bot(token=os.getenv("TOKEN"))
 
-
         for key in data:
-            main_string = key
-
-            img_url = data[key]["img"].split("?")[0]
-            img_data = requests.get(img_url).content
-            # img_url.split('/')[-1]
-            img_name = str(key) + '.' + img_url.split('/')[-1].split('.')[-1]
-            with open('./data/handlers/callback/photo/' + img_name.strip(), "wb") as photo:
-                photo.write(img_data)
-
-            for key in data:
                 await callback.message.answer(data[key])
+
+        # for key in data:
+        #     main_string = key
+
+        #     img_url = data[key]["img"].split("?")[0]
+        #     img_data = requests.get(img_url).content
+        #     # img_url.split('/')[-1]
+        #     img_name = str(key) + '.' + img_url.split('/')[-1].split('.')[-1]
+        #     with open('./data/handlers/callback/photo/' + img_name.strip(), "wb") as photo:
+        #         photo.write(img_data)
+
+            
             
             # main_string += "\n" + data[key]["Смена"]
             # await callback.message.answer("Смена")
