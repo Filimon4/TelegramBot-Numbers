@@ -1,30 +1,39 @@
 from aiogram import Dispatcher, types, Bot
 from aiogram.types import ContentType, Message, CallbackQuery, Voice, File
 
-from .Inline_kb_menu import ikb_menu, ikb_session
-from .bkb_menu import kb_menu, kb_menu2
+# from .Inline_kb_menu import ikb_menu, ikb_session
+# from .bkb_menu import kb_menu, kb_menu2
 
-import event_handler
-import buttons
+# import event_handler
+# import buttons
 
 import speech_recognition as sr
 from pathlib import Path
 import os
+from pydub import AudioSegment 
+import ffmpeg
 
 
 
+def convent (File_name):
+    in_file = ffmpeg.input(f"{File_name}.ogg")
+    
+    nFile = f"{File_name}.wav"
+    
 
 
 async def errors(mes: Message):
     await mes.answer(f'Command {mes.text} not found!')
 
-def Listened(file_name):
-    with sr.AudioFile(file_name) as source:
+def Listened (voice_file_id):
+    File_voice = str(Path(f'./handler/voice_answer/{voice_file_id}.WAV'))
+    r = sr.Recognizer() 
+    with sr.AudioFile(File_voice) as source:
         audio = r.record(source)
-        sr.Recognizer.adjust_for_ambient_noise(source)
-        audio = sr.Recognizer.listened(source)
+        # sr.Recognizer.adjust_for_ambient_noise(source)
+        # audio = sr.Recognizer.listened(source)
         try :
-            text = sr.Recognizer.recongnize_google(audio, language= 'ru-Ru')
+            text = r.recognize_google(audio, language= 'ru-Ru')
         except sr.UnknownValueError:
             text = ('i dont know')
         return (text)
@@ -36,12 +45,14 @@ async def handle_file(file: types.File, file_name: str, path: str):
 
 async def Voice_answer(msg: types.Message):
     voice = await msg.voice.get_file()
-    file_name = f"{voice.file_id}.ogg"
     path = './handler/voice_answer'
+    voice_path = str(Path(f'./handler/voice_answer/{voice.file_id}'))
     await handle_file(file = voice, file_name=f"{voice.file_id}.ogg", path=path)
-    File_voice = str(Path(f'./handler/voice_answer/{file_name}')) 
-    await msg.reply(f'Секунду {File_voice} ')
-    await msg.reply(Listened(File_voice))
+    await msg.reply('Секунду  ')
+    sound = AudioSegment.from_file(f"{voice_path}.ogg")
+    sound.export(f"{voice_path}.WAV", format="WAV")
+    await  msg.answer (Listened(voice.file_id))
+
     
 
 # async def show_inline_menu(message: types.Message):
@@ -83,11 +94,11 @@ async def sessions(message: types.Message):
 def regirst_events(dp: Dispatcher):
     # register events
 
-    # dp.register_message_handler(Voice_answer, content_types=types.ContentTypes.VOICE)
+    dp.register_message_handler(Voice_answer, content_types=types.ContentTypes.VOICE)
     # dp.register_message_handler(show_inline_menu, commands = 'menu')
     # dp.register_message_handler(menu, commands = 'kmenu')
-    dp.register_message_handler(start, commands = 'start')
-    dp.register_message_handler(sessions, commands = 'sessions')
+    # dp.register_message_handler(start, commands = 'start')
+    # dp.register_message_handler(sessions, commands = 'sessions')
 
     # dp.register_callback_query_handler(send_message_ikb, text = 'Your text')
     # dp.register_callback_query_handler(send_message_ikb, text = 'Your text2')
