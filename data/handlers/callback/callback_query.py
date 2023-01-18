@@ -26,21 +26,23 @@ async def session_today(callback: types.CallbackQuery):
             with open('./data/handlers/callback/photo/' + img_name.strip(), "wb") as photo:
                 photo.write(img_data)
 
+            for key in data:
+                await callback.message.answer(data[key])
             
-            main_string += "\n" + data[key]["Смена"]
-            await callback.message.answer("Смена")
-            for key in sin_name:
-                print(str(key) + " - " + str(sin_name[key]))
-                main_string += "\n    " + str(key) + " - " + str(sin_name[key])
+            # main_string += "\n" + data[key]["Смена"]
+            # await callback.message.answer("Смена")
+            # for key in sin_name:
+            #     print(str(key) + " - " + str(sin_name[key]))
+            #     main_string += "\n    " + str(key) + " - " + str(sin_name[key])
 
-            main_string += "\n" + data[key]["Дружба"]
-            await callback.message.answer("Дружба")
-            for key in sin_name:
-                print(str(key) + " - " + str(sin_name[key]))
-                main_string += "\n    " + str(key) + " - " + str(sin_name[key])
+            # main_string += "\n" + data[key]["Дружба"]
+            # await callback.message.answer("Дружба")
+            # for key in sin_name:
+            #     print(str(key) + " - " + str(sin_name[key]))
+            #     main_string += "\n    " + str(key) + " - " + str(sin_name[key])
 
-            print(main_string)
-            await callback.message.answer(main_string)
+            # print(main_string)
+            # await callback.message.answer(main_string)
         f.close()
     except:
         await callback.answer("Something goes wrong")
