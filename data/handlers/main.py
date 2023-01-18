@@ -1,10 +1,12 @@
 from aiogram import Dispatcher
 
-from .utils import regirst_events
+from .utils import registr_events
+from .callback import registr_callbackes
 
-def register_modules(dp: Dispatcher):
+def registr_modules(dp: Dispatcher):
     handlers = [
-        regirst_events
+        registr_events,
+        registr_callbackes
     ]
     for handler in handlers:
         handler(dp)

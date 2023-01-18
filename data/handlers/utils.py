@@ -1,11 +1,8 @@
 from aiogram import Dispatcher, types, Bot
 from aiogram.types import ContentType, Message, CallbackQuery, Voice, File
 
-# from .Inline_kb_menu import ikb_menu, ikb_session
-# from .bkb_menu import kb_menu, kb_menu2
-
-# import event_handler
-# import buttons
+from .event_handler import *
+from ..bot import bot
 
 import speech_recognition as sr
 from pathlib import Path
@@ -41,7 +38,7 @@ def Listened (voice_file_id):
 async def handle_file(file: types.File, file_name: str, path: str):
     Path(f"{path}").mkdir(parents=True, exist_ok=True)
 
-    await Bot(token=os.getenv("TOKEN")).download_file(file_path=file.file_path, destination=f"{path}/{file_name}")
+    await bot.download_file(file_path=file.file_path, destination=f"{path}/{file_name}")
 
 async def Voice_answer(msg: types.Message):
     voice = await msg.voice.get_file()
@@ -84,16 +81,7 @@ async def Voice_answer(msg: types.Message):
 # async def menu(message: types.Message):
 #     await message.answer("new keyboard", reply_markup=kb_menu)
 
-async def start(message: types.Message):
-    await message.answer('''
-        Здравствуй, я бот транслирующий сеансы в Смене.
-        \nЧто бы увидеть список сенасов воспользуйся командой /sessions
-    ''')
-
-async def sessions(message: types.Message):
-    await message.answer('''Выберете Дату''', reply_markup=ikb_session)
-
-def regirst_events(dp: Dispatcher):
+def registr_events(dp: Dispatcher):
     # register events
 
     dp.register_message_handler(Voice_answer, content_types=types.ContentTypes.VOICE)
