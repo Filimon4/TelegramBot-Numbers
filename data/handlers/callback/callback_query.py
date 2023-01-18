@@ -7,6 +7,7 @@ import os
 from time import sleep
 
 async def session_today(callback: types.CallbackQuery):
+    print('e')
     res = int(callback.data.split("_")[1])
     try:
         json_file = await get_data_session(f'https://kinosmena.ru/?date=2023/01/{res}&facility=smena',res)
