@@ -52,6 +52,8 @@ async def Voice_answer(msg: types.Message):
     sound = AudioSegment.from_file(f"{voice_path}.ogg")
     sound.export(f"{voice_path}.WAV", format="WAV")
     await  msg.answer (Listened(voice.file_id))
+    os.remove(f"{voice_path}.ogg")
+    os.remove(f"{voice_path}.WAV")
 
     
 
