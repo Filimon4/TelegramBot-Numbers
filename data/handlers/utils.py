@@ -1,11 +1,11 @@
 from aiogram import Dispatcher, types, Bot
 from aiogram.types import ContentType, Message, CallbackQuery, Voice, File
 
-from .Inline_kb_menu import ikb_menu, ikb_session
-from .bkb_menu import kb_menu, kb_menu2
+# from .Inline_kb_menu import ikb_menu, ikb_session
+# from .bkb_menu import kb_menu, kb_menu2
 
-import event_handler
-import buttons
+# import event_handler
+# import buttons
 
 import speech_recognition as sr
 from pathlib import Path
@@ -83,7 +83,7 @@ async def sessions(message: types.Message):
 def regirst_events(dp: Dispatcher):
     # register events
 
-    # dp.register_message_handler(Voice_answer, content_types=types.ContentTypes.VOICE)
+    dp.register_message_handler(Voice_answer, content_types=types.ContentTypes.VOICE)
     # dp.register_message_handler(show_inline_menu, commands = 'menu')
     # dp.register_message_handler(menu, commands = 'kmenu')
     dp.register_message_handler(start, commands = 'start')
