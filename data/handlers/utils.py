@@ -2,7 +2,6 @@ from aiogram import Dispatcher, types, Bot
 from aiogram.types import ContentType, Message, CallbackQuery, Voice, File
 
 from .event_handler import *
-from ..bot import bot
 
 import speech_recognition as sr
 from pathlib import Path
@@ -38,7 +37,7 @@ def Listened (voice_file_id):
 async def handle_file(file: types.File, file_name: str, path: str):
     Path(f"{path}").mkdir(parents=True, exist_ok=True)
 
-    await bot.download_file(file_path=file.file_path, destination=f"{path}/{file_name}")
+    await Bot(token=os.getenv("TOKEN")).download_file(file_path=file.file_path, destination=f"{path}/{file_name}")
 
 async def Voice_answer(msg: types.Message):
     voice = await msg.voice.get_file()
@@ -87,8 +86,10 @@ def registr_events(dp: Dispatcher):
     dp.register_message_handler(Voice_answer, content_types=types.ContentTypes.VOICE)
     # dp.register_message_handler(show_inline_menu, commands = 'menu')
     # dp.register_message_handler(menu, commands = 'kmenu')
-    # dp.register_message_handler(start, commands = 'start')
-    # dp.register_message_handler(sessions, commands = 'sessions')
+    
+    dp.register_message_handler(start, commands = 'start')
+    dp.register_message_handler(sessions, commands = 'sessions')
+    dp.register_message_handler(helper, commands = 'help')
 
     # dp.register_callback_query_handler(send_message_ikb, text = 'Your text')
     # dp.register_callback_query_handler(send_message_ikb, text = 'Your text2')

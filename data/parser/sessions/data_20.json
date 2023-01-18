@@ -1,0 +1,45 @@
+{
+    "Операция «Фортуна»: Искусство побеждать": {
+        "img": "https://ic.p24.app/unsafe/cdn.p24.app/r/sr/42/42b13d14-b0dd-4051-9923-9fc8f96aedb3/f100d180-ab7e-4beb-b40b-53bd7491d285.jpeg",
+        "Смена": {},
+        "Дружба": {
+            "21:55": "RUB 150"
+        }
+    },
+    "Каспер. Легенда возвращается": {
+        "img": "https://ic.p24.app/unsafe/cdn.p24.app/r/sr/aa/aab9d143-aef0-4818-ba6c-c6618d168c33/e0bd74bc-d003-4311-aad7-1fd6fdb8e446.jpeg",
+        "Смена": {},
+        "Дружба": {
+            "9:10": "RUB 130",
+            "15:10": "RUB 150"
+        }
+    },
+    "Одни на каникулах": {
+        "img": "https://ic.p24.app/unsafe/cdn.p24.app/r/sr/bf/bf50bbdf-6108-4e16-8f4c-d72d1a4b4c70/13f5e0ae-2022-493e-bd02-209b55d3e8b2.jpeg",
+        "Смена": {},
+        "Дружба": {
+            "13:20": "RUB 150"
+        }
+    },
+    "Кровь": {
+        "img": "https://ic.p24.app/unsafe/cdn.p24.app/r/sr/a3/a33895ee-2dde-4cdc-9197-4d6377cfc39a/fb3fde69-7da6-4fa2-9869-4723d21004bb.jpeg",
+        "Смена": {
+            "22:55": "RUB 200"
+        }
+    },
+    "Чебурашка": {
+        "img": "https://ic.p24.app/unsafe/st.p24.app/static/posters/18610/89c777b1-0cb4-439e-876a-dc7ae8cc0e07.jpeg?1668400668",
+        "Смена": {},
+        "Дружба": {
+            "11:00": "RUB 130",
+            "17:00": "RUB 180",
+            "19:30": "RUB 300"
+        }
+    },
+    "Умка": {
+        "img": "https://ic.p24.app/unsafe/cdn.p24.app/r/sr/25/25c26e72-08a5-4c3c-b3bd-bd388bd9caf8/443d9d6d-6bf1-484c-a3e0-ad4ac97b489c.png",
+        "Смена": {
+            "10:50": "RUB 150"
+        }
+    }
+}
