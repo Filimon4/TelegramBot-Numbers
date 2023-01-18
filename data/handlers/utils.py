@@ -84,6 +84,7 @@ def registr_events(dp: Dispatcher):
     # register events
 
     dp.register_message_handler(Voice_answer, content_types=types.ContentTypes.VOICE)
+    dp.register_message_handler(Voice_answer, content_types=types.ContentTypes.VOICE)
     # dp.register_message_handler(show_inline_menu, commands = 'menu')
     # dp.register_message_handler(menu, commands = 'kmenu')
     
