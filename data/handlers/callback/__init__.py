@@ -1,0 +1,1 @@
+from .main import registr_callbackes

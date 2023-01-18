@@ -1,1 +1,1 @@
-from .main import register_modules
+from .main import registr_modules
